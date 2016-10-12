@@ -1,109 +1,140 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
-ruby '2.2.0'
+ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
-
-gem 'google-webfonts-rails'
-
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
-gem 'pg'
-
-# To extract sensitive configuration
-gem 'app_configuration'
-
-# Use unicorn as the app server
-gem 'unicorn'
-
+gem 'pg', '~> 0.18'
+# Use Puma as the app server
+gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-gem 'sass-rails'
-
-# Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails'
-
+gem 'sass-rails', '~> 5.0'
+# Use fontawesome for common icons
+gem 'font-awesome-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
-gem 'less-rails'
-gem 'therubyracer'
-gem 'twitter-bootstrap-rails'
+gem 'uglifier', '>= 1.3.0'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.2'
+
+gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 2.5'
+# Use autoprefixer to avoid writing css prefixes
+gem 'autoprefixer-rails'
 
-gem 'loadjs'
+gem 'bootstrap-sass'
 
 gem 'carrierwave'
 
-gem 'turbolinks'
-
-gem 'jquery-turbolinks'
-
+# Authentication
 gem 'devise'
+gem 'devise-async'
 
-gem 'responders', '2.0'
+gem 'responders'
 
-gem 'active_model_serializers', github: 'rails-api/active_model_serializers', branch: '0-8-stable'
+gem 'active_model_serializers'
 
-# CodeClimate Reporter
-gem 'codeclimate-test-reporter', group: :test, require: nil
-gem 'simplecov', require: false, group: :test
+gem 'foreman'
 
 # Active Admin
-gem 'activeadmin', github: 'activeadmin', branch: 'rails-4-2'
-gem 'inherited_resources', github: 'josevalim/inherited_resources', branch: 'rails-4-2'
-gem 'formtastic'
-gem 'ransack'
-gem 'polyamorous'
+gem 'inherited_resources', git: 'https://github.com/activeadmin/inherited_resources'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
 
 # Enables Slim templates
 gem 'slim-rails'
 
 # Sidekiq
 gem 'sidekiq'
-gem 'sinatra', '>= 1.3.0', require: nil
+gem 'sinatra', require: nil
 gem 'sidekiq-failures'
+gem 'sidekiq_mailer'
 
+# Authorization Policies
 gem 'pundit'
 
 # Exceptions Report
-gem 'airbrake'
+gem 'rollbar'
+
+# Postgres Insights
+gem 'pghero'
+
+# SEO Meta Tags
+gem 'metamagic'
+gem 'meta-tags'
+
+gem 'newrelic_rpm'
+
+gem 'recipient_interceptor'
 
 group :development do
+  # Gem to detect N+1 queries
+  gem 'bullet'
+  gem 'listen', '~> 3.0.5'
   gem 'better_errors'
-  gem 'binding_of_caller'
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'web-console'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+
+  # Capistrano
+  # Remove comments if using Capistrano
+  # gem 'capistrano', '~> 3.1'
+  # gem 'capistrano-rails', '~> 1.1'
+  # gem 'capistrano-maintenance', github: 'capistrano/maintenance', require: false
+  # gem 'capistrano-rbenv', '~> 2.0'
+  # gem 'capistrano-rbenv-install', '~> 1.2.0'
+  # gem 'capistrano-nginx-unicorn'
+  # gem 'capistrano-sidekiq'
+  # gem 'capistrano-rails-console'
+  # gem 'capistrano-db-tasks', require: false
+  # gem 'capistrano-faster-assets', '~> 1.0'
+  # gem 'capistrano-postgresql', '~> 4.2.0'
+  # gem 'airbrussh', require: false
+end
+
+group :development, :test do
+  gem 'awesome_print'
+
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platform: :mri
+
+  gem 'factory_girl_rails'
+  gem 'faker'
 
   # Lints
   gem 'rubocop'
+  gem 'scss_lint', require: false
+
+  # Static analysis for security vulnerabilities
+  gem 'brakeman', require: false
 end
 
-group :debugging, :development, :test do
-  gem 'pry'
-  gem 'byebug'
-  gem 'pry-byebug'
-  gem 'pry-nav'
-  gem 'pry-stack_explorer'
-end
-
-group :test, :development do
-
+group :test do
   gem 'rspec-rails'
-  gem 'factory_girl_rails'
-  gem 'faker'
-  gem 'cucumber-rails', require: false
-  gem 'database_cleaner', github: 'bmabey/database_cleaner'
+  gem 'rspec-mocks'
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
 
-  # Modify time in tests
-  gem 'timecop'
-
-  # Cucumber with JS
-  gem 'poltergeist'
-
-  # Save and open page cucumber
+  gem 'capybara'
+  gem 'formulaic'
   gem 'launchy'
+
+  gem 'timecop'
+  gem 'webmock'
+
+  # CodeStats
+  gem 'simplecov', require: false
+  gem 'codestats-metrics-reporter', require: nil
+  gem 'rubycritic', require: false
 end
 
-group :production, :staging do
+group :production do
   gem 'rails_12factor'
 end

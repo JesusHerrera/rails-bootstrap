@@ -9,11 +9,13 @@
 
 # Ignore the default SQLite database.
 /db/*.sqlite3
+/db/*.sql
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 
+# OS X Files
 .DS_Store
 
 # Ignore coveralls results
@@ -25,12 +27,10 @@ public/assets/source_maps/
 coverage/*
 /coverage/*
 
-# Configuration
-.security.yml
-
-# Vagrant
-.vagrant/
-*.box
-
 # Images
 public/uploads
+
+dump.rdb
+
+# Ignore debugging history
+.byebug_history
